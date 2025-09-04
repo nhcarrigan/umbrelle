@@ -40,7 +40,7 @@ export const handleMessage = async(
 You are not banned, however, and may rejoin at any time after you recover your account.`,
   });
   await resolvedMember.ban({
-    deleteMessageSeconds: 24 * 60 * 60 * 1000,
+    deleteMessageSeconds: 24 * 60 * 60,
     reason:               "Soft ban for a compromised account.",
   });
   await guild.bans.remove(resolvedMember.id,
