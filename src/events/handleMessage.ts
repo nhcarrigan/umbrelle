@@ -20,7 +20,11 @@ export const handleMessage = async(
   if (!message.inGuild()) {
     return;
   }
-  const { author, member, guild, channel } = message;
+  const { author, member, guild, channel, system } = message;
+
+  if (author.bot || system) {
+    return;
+  }
 
   const cached = umbrelle.cache.get(guild.id);
   if (cached !== channel.id) {
@@ -32,6 +36,9 @@ export const handleMessage = async(
       return null;
     });
   if (!resolvedMember) {
+    return;
+  }
+  if (!resolvedMember.bannable) {
     return;
   }
   await author.send({
