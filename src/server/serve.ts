@@ -18,7 +18,7 @@ const html = `<!DOCTYPE html>
   </head>
   <body>
     <main>
-    <h1>Pavelle</h1>
+    <h1>Umbrelle</h1>
     <img src="https://cdn.nhcarrigan.com/new-avatars/umbrelle-full.png" width="250" alt="Umbrelle" />
     <section>
       <p>Discord bot that allows you to configure a honeypot channel where accounts will automatically be banned for posting. Great to catch compromised accounts.</p>
