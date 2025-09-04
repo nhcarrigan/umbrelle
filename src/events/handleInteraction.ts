@@ -4,7 +4,12 @@
  * @author Naomi Carrigan
  */
 
-import { MessageFlags, type Interaction, ChannelType } from "discord.js";
+import {
+  MessageFlags,
+  type Interaction,
+  ChannelType,
+  PermissionFlagsBits,
+} from "discord.js";
 import { about } from "../components/about.js";
 import type { Umbrelle } from "../interfaces/umbrelle.js";
 
@@ -24,7 +29,7 @@ export const handleInteraction = async(
   await interaction.deferReply({
     flags: [ MessageFlags.Ephemeral ],
   });
-  const { commandName, options, guild } = interaction;
+  const { commandName, options, guild, member } = interaction;
   if (commandName === "about") {
     await interaction.editReply({
       components: about,
@@ -33,6 +38,12 @@ export const handleInteraction = async(
     return;
   }
   if (commandName === "honeypot") {
+    if (!member.permissions.has(PermissionFlagsBits.ManageGuild)) {
+      await interaction.editReply(
+        "You do not have permission to set a honeypot channel.",
+      );
+      return;
+    }
     const channel
       = options.getChannel("channel", true, [ ChannelType.GuildText ]);
     await umbrelle.db.honeypots.upsert({
