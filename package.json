@@ -20,7 +20,7 @@
     "@types/node": "24.3.0",
     "eslint": "9.34.0",
     "prisma": "6.15.0",
-    "typescript": "5.9.2"
+    "typescript": "5.9.3"
   },
   "dependencies": {
     "@nhcarrigan/logger": "1.1.1",
